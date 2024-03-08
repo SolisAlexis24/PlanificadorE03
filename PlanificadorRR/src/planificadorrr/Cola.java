@@ -10,6 +10,7 @@ package planificadorrr;
  */
 public class Cola {
     Integer NumElementos;
+    Integer Capacidad;
     Proceso Inicial;
     Proceso Final;
     /**
@@ -33,17 +34,10 @@ public class Cola {
         return Final;
     }
 
-    public void setNumElementos(Integer NumElementos) {
-        this.NumElementos = NumElementos;
+    public void setCapacidad(Integer Capacidad) {
+        this.Capacidad = Capacidad;
     }
-
-    public void setInicial(Proceso Inicial) {
-        this.Inicial = Inicial;
-    }
-
-    public void setFinal(Proceso Final) {
-        this.Final = Final;
-    }
+    
     
    public boolean esVacia(){
        return this.NumElementos==0;

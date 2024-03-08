@@ -24,7 +24,6 @@ public class PlanificadorRR {
             P1.setNombre("P1");
             P2.setNombre("P2");
             P3.setNombre("P3");
-            //P1.imprimirProceso();
             Cola C1 = new Cola();
             C1.encolar(P1);
             C1.imprimirCola();
