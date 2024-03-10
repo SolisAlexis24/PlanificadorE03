@@ -1,7 +1,6 @@
-
-package planificadorrr;
-
 import java.util.Scanner;
+import planificadorrr.Menu;
+
 /**
  *
  * @author HP
@@ -14,3 +13,4 @@ public class Main {
         Menu.menu(scanner); 
     }
 }
+
