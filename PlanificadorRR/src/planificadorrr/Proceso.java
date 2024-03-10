@@ -98,31 +98,24 @@ public class Proceso {
 
     public void imprimirProceso() {
         System.out.println("");
-        System.out.print("ID del proceso ");
-        System.out.print("[");
-        System.out.print(this.ID);
-        System.out.println("]");
+        
+        System.out.print("ID del proceso");
+        System.out.println("[" + this.ID+"]");
 
-        System.out.print("Nombre del proceso ");
-        System.out.print("[");
-        System.out.print(this.Nombre);
-        System.out.println("]");
+        System.out.print("Nombre del proceso");
+        System.out.println("["+this.Nombre+"]");
 
-        System.out.print("Tamano del proceso ");
-        System.out.print("[");
-        System.out.print(this.Tamano);
-        System.out.println("]");
+        System.out.print("Tamano del proceso");
+        System.out.println("["+this.Tamano+"]");
 
-        System.out.print("Tiempo de ejecucion del proceso ");
-        System.out.print("[");
-        System.out.print(this.TiempoEjecucion);
-        System.out.println("]");
+        System.out.print("Tiempo de ejecucion del proceso");
+        System.out.println("["+this.TiempoEjecucion+"]");
 
-        System.out.print("Tiempo de llegada del proceso ");
-        System.out.print("[");
-        System.out.print(this.TiempoLlegada);
-        System.out.println("]");
+        System.out.print("Tiempo de llegada del proceso");
+        System.out.println("["+this.TiempoLlegada+"]");
+        
         System.out.println("");
+
 
     }
 
