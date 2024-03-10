@@ -3,7 +3,7 @@ import planificadorrr.Menu;
 
 /**
  *
- * @author HP
+ * @author Equipo03
  */
 
 public class Main {
