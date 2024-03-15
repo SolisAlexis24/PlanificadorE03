@@ -13,11 +13,12 @@ public class Proceso {
     private String ID;
     private String Nombre;
     private Integer Tamano, TiempoEjecucion, TiempoLlegada;
-    /*Proceso ProcesoSiguiente;*/
+    Proceso ProcesoSiguiente;
 
     
     //CONSTRUCTOR
     public Proceso(int contador) {  //Constructor público del proceso
+        this.ProcesoSiguiente = null;
         generarID(contador);
     }
 
@@ -43,9 +44,9 @@ public class Proceso {
         return ID;
     }
 
-    /*public Proceso getProcesoSiguiente() {
+    public Proceso getProcesoSiguiente() {
         return ProcesoSiguiente;
-    }*/
+    }
     
     
     
@@ -66,15 +67,12 @@ public class Proceso {
         this.TiempoLlegada = TiempoLlegada;
     }
 
-    /*public void setProcesoSiguiente(Proceso ProcesoSiguiente) {
+    public void setProcesoSiguiente(Proceso ProcesoSiguiente) {
         this.ProcesoSiguiente = ProcesoSiguiente;   
-     */
-    
-    
-    
+    }
     
     //MÉTODOS
-    private void generarID(int contador) { //método privado
+    private void generarID(Integer contador) { //método privado
     //Declaramos una variable tipo Date donde almacenamos la fecha
         Date todayDate = new Date();
 
@@ -93,10 +91,11 @@ public class Proceso {
         String uuidID = uuid.toString().replace("-", "").substring(0, 6); // Tomar solo los primeros 6 caracteres
          */
     // Creamos el ID del proceso concatenando año, mes, día e identificador
-        ID = anio + mes + dia + contador;
+        this.ID = anio + mes + dia + contador;
     }
 
-    public void imprimirProceso() {
+    
+    public void imprimirInfoProceso() {
         System.out.println("");
         
         System.out.print("ID del proceso");
@@ -115,8 +114,12 @@ public class Proceso {
         System.out.println("["+this.TiempoLlegada+"]");
         
         System.out.println("");
-
-
     }
 
+    public void imprimirProceso(){
+        System.out.print("[");
+        System.out.print(this.Nombre);
+        System.out.print("]");
+
+}
 }

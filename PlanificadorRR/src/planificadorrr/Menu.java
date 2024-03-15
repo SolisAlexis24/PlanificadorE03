@@ -9,7 +9,6 @@ public class Menu {
         boolean continuar = true;
         int contador = 0;
 
-
         while (continuar) {
             System.out.println("MENU");
             System.out.println("Escoja una opcion: ");
@@ -43,9 +42,8 @@ public class Menu {
                     proceso.setTiempoLlegada(tiempoLlegada);
                     
                     
-                    proceso.imprimirProceso();
+                    proceso.imprimirInfoProceso();
                     System.out.println("");
-                  
                     break;
                 case 2:
                     System.out.println("Empezando política RR para planificador de procesos.");

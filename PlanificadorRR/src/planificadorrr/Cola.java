@@ -39,9 +39,9 @@ public class Cola {
     }
     
     
-   public boolean esVacia(){
-       return this.NumElementos==0;
-   }
+    public boolean esVacia(){
+        return this.NumElementos==0;
+    }
     /**
      * Proceso que encola o añade un nuevo elemento a la cola
      * @param Pnuevo Este proceso es el que se añadirá a la cola
@@ -78,7 +78,7 @@ public class Cola {
     public void imprimirCola(){
         System.out.print("{");
         for(Proceso j = this.Inicial;j != null; j = j.getProcesoSiguiente()){
-            j.imprimirProceso();
+            j.imprimirInfoProceso();
             System.out.print(" ");
         }
         System.out.println("}");
