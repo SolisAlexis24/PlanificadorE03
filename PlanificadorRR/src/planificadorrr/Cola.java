@@ -9,10 +9,10 @@ package planificadorrr;
  * @author Equipo03
  */
 public class Cola {
-    Integer NumElementos;
-    Integer Capacidad;
-    Proceso Inicial;
-    Proceso Final;
+    private Integer NumElementos;
+    private Integer Capacidad;
+    private Proceso Inicial;
+    private Proceso Final;
     /**
      * Constructor de la cola, inicializa los valores por defecto de la cola
      */

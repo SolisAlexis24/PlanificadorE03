@@ -29,15 +29,15 @@ public class Menu {
                     String nombre = scanner.nextLine();
                     proceso.setNombre(nombre);
                     
-                    System.out.println("Ingrese el tamano del proceso:");
+                    System.out.println("Ingrese el tamano del proceso en kB:");
                     Integer tamano = scanner.nextInt();
                     proceso.setTamano(tamano);
                     
-                    System.out.println("Ingrese el tiempo de ejecucion del proceso:");
+                    System.out.println("Ingrese el tiempo de ejecucion del proceso en ms:");
                     Integer tiempoEjecucion = scanner.nextInt();
                     proceso.setTiempoEjecucion(tiempoEjecucion);
                     
-                    System.out.println("Ingrese el tiempo de llegada del proceso:");
+                    System.out.println("Ingrese el tiempo de llegada del proceso en ms:");
                     Integer tiempoLlegada = scanner.nextInt();
                     proceso.setTiempoLlegada(tiempoLlegada);
                     
