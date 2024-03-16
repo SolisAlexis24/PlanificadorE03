@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class Menu {
 
-    public static void menu(Scanner scanner) {
+    public static void showMenu(Scanner scanner) {
 
         boolean continuar = true;
-        int contador = 0;
+        Integer contador = 0;
 
         while (continuar) {
             System.out.println("MENU");
@@ -16,7 +16,7 @@ public class Menu {
             System.out.println("2. Empezar planificador de procesos");
             System.out.println("3. Salir");
 
-            int opcion = scanner.nextInt();
+            Integer opcion = scanner.nextInt();
 
             switch (opcion) {
                 case 1:

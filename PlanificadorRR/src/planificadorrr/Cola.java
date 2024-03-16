@@ -78,7 +78,7 @@ public class Cola {
     public void imprimirCola(){
         System.out.print("{");
         for(Proceso j = this.Inicial;j != null; j = j.getProcesoSiguiente()){
-            j.imprimirInfoProceso();
+            j.imprimirProceso();
             System.out.print(" ");
         }
         System.out.println("}");
