@@ -1,5 +1,4 @@
 package planificadorrr;
-
 import java.util.Scanner;
 
 public class Menu {
@@ -40,9 +39,8 @@ public class Menu {
                     System.out.println("Ingrese el tiempo de llegada del proceso en ms:");
                     Integer tiempoLlegada = scanner.nextInt();
                     proceso.setTiempoLlegada(tiempoLlegada);
-                    
-                    
-                    proceso.imprimirInfoProceso();
+
+                    PlanificadorRR.ProcesosListos.encolar(proceso);
                     System.out.println("");
                     break;
                 case 2:
