@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Menu {
     
     private static Boolean continuar = true;
-    private static Integer contador = 0;
+    private static Integer contador = 0; 
 
     
     public static void showMenu(Scanner scanner) {
