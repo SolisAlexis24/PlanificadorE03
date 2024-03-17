@@ -2,11 +2,12 @@ package planificadorrr;
 import java.util.Scanner;
 
 public class Menu {
+    
+    private static Boolean continuar = true;
+    private static Integer contador = 0;
 
+    
     public static void showMenu(Scanner scanner) {
-
-        boolean continuar = true;
-        Integer contador = 0;
 
         while (continuar) {
             System.out.println("MENU");
