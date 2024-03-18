@@ -70,6 +70,12 @@ public class Proceso {
     public void setProcesoSiguiente(Proceso ProcesoSiguiente) {
         this.ProcesoSiguiente = ProcesoSiguiente;   
     }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+    
+    
     
     //MÉTODOS
     private void generarID(Integer contador) { //método privado

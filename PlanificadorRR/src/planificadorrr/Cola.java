@@ -37,6 +37,11 @@ public class Cola {
     public void setCapacidad(Integer Capacidad) {
         this.Capacidad = Capacidad;
     }
+
+    public Integer getCapacidad() {
+        return Capacidad;
+    }
+    
     
     
     public boolean esVacia(){

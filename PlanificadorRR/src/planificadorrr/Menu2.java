@@ -1,7 +1,7 @@
 package planificadorrr;
 import java.util.Scanner;
 
-public class Menu {
+public class Menu2 {
     
     private static Boolean continuar = true;
     private static Integer contador = 0; 
@@ -41,12 +41,15 @@ public class Menu {
                     Integer tiempoLlegada = scanner.nextInt();
                     proceso.setTiempoLlegada(tiempoLlegada);
 
-                    PlanificadorRR.ProcesosListos.encolar(proceso);
+                    PlanificadorRR.Procesos.agregarAlInicio(proceso);
                     System.out.println("");
                     break;
                 case 2:
                     System.out.println("Empezando política RR para planificador de procesos.");
-                    // Colas y política rr
+                    PlanificadorRR.Procesos.ordenarPorTiempoLlegada();
+                    RoundRobin RR = new RoundRobin();
+                    RR.Run();
+                    continuar = false;
                     break;
                 case 3:
                     System.out.println("Fin del programa");

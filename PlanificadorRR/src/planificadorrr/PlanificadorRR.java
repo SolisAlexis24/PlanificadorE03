@@ -4,29 +4,33 @@
  */
 package planificadorrr;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Alexis
  */
 public class PlanificadorRR {
+    static Cola ProcesosEspera = new Cola();
     static Cola ProcesosListos = new Cola();
-    static Cola ProcesosListosEjec = new Cola();
+    static LinkedList Procesos = new LinkedList();
     /**
      * @param args the command line arguments
      */
+    public static void imprColas(){
+        System.out.println("Cola de procesos en espera");
+        ProcesosEspera.imprimirCola();
+        System.out.println("Cola de procesos listos para ejecucion");
+        ProcesosListos.imprimirCola();
+    }
+    
     public static void main(String[] args) {
         Scanner scanner1 = new Scanner(System.in);
         System.out.println("Ingrese la capacidad de la cola de procesos listos para ejecución en kB");
         Integer capacidad = scanner1.nextInt();
-        ProcesosListosEjec.setCapacidad(capacidad);
+        ProcesosListos.setCapacidad(capacidad);
         
         Scanner scanner2 = new Scanner(System.in);
-        Menu.showMenu(scanner2);
-        ProcesosListos.imprimirCola();
+        Menu2.showMenu(scanner2);
     }
     
 }
