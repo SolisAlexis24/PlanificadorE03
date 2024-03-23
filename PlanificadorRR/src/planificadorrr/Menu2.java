@@ -1,12 +1,17 @@
 package planificadorrr;
 import java.util.Scanner;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Menu2 {
     
-    private static Boolean continuar = true;
-    private static Integer contador = 0; 
+    private static Boolean continuar = true; //Atributo para que se determine si se sigue con la impresion del menu
+    private static Integer contador = 0;  //Contador para poder crear los ID de los procesos
 
-    
+    /**
+     * Metodo para imprimir el menu con ayuda de un switch
+     * @param scanner 
+     */
     public static void showMenu(Scanner scanner) {
 
         while (continuar) {
@@ -19,8 +24,8 @@ public class Menu2 {
             Integer opcion = scanner.nextInt();
 
             switch (opcion) {
-                case 1:
-                    contador+=1;
+                case 1 -> {
+                    contador++;
                     Proceso proceso = new Proceso(contador);
                     
                     scanner.nextLine(); //Se necesita leer este salto de línea para que pueda almacenarse nombre
@@ -41,23 +46,34 @@ public class Menu2 {
                     Integer tiempoLlegada = scanner.nextInt();
                     proceso.setTiempoLlegada(tiempoLlegada);
 
-                    PlanificadorRR.Procesos.agregarAlInicio(proceso);
+                    PlanificadorRR.Procesos.add(proceso);
                     System.out.println("");
-                    break;
-                case 2:
+                }
+                case 2 -> {
+                    PlanificadorRR.ProcesosAux = PlanificadorRR.Procesos;
                     System.out.println("Empezando política RR para planificador de procesos.");
-                    PlanificadorRR.Procesos.ordenarPorTiempoLlegada();
-                    RoundRobin RR = new RoundRobin();
-                    RR.Run();
+                    // Este bloque de código ordena la lista de procesos en PlanificadorRR.Procesos según el tiempo de llegada de cada proceso.
+                    // Se utiliza el método estático sort() de la clase Collections para ordenar la lista.
+                    Collections.sort(PlanificadorRR.Procesos, new Comparator<Proceso>() {
+                        // Aquí se implementa la interfaz Comparator para especificar cómo se deben comparar dos objetos Proceso.
+                        @Override
+                        public int compare(Proceso p1, Proceso p2) {
+                            // Este método compare() compara dos procesos p1 y p2 basándose en su tiempo de llegada.
+                            // Devuelve un valor negativo si p1 debe ir antes que p2, un valor positivo si p2 debe ir antes que p1,
+                            // o cero si los tiempos de llegada son iguales y no hay preferencia.
+                            return p1.getTiempoLlegada().compareTo(p2.getTiempoLlegada());
+                        }
+                    });
+                    
+                    //RoundRobin RR = new RoundRobin();
+                    //RR.Run();
                     continuar = false;
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     System.out.println("Fin del programa");
                     continuar = false;
-                    break;
-                default:
-                    System.out.println("Opción no válida");
-                    break;
+                }
+                default -> System.out.println("Opción no válida");
             }
         }
 

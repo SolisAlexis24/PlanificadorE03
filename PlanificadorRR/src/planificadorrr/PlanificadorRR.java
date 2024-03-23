@@ -4,33 +4,34 @@
  */
 package planificadorrr;
 import java.util.Scanner;
+import java.util.LinkedList;
 
 /**
  *
- * @author Alexis
+ * @author Equipo03
  */
 public class PlanificadorRR {
-    static Cola ProcesosEspera = new Cola();
-    static Cola ProcesosListos = new Cola();
-    static LinkedList Procesos = new LinkedList();
-    /**
-     * @param args the command line arguments
-     */
+    static Cola ProcesosEspera = new Cola(); //Cola de procesos en espera, cola auxiliar con espacio de memoria infinita.
+    static Cola ProcesosListos = new Cola(); //Cola de procesos listos para la ejecucion, esta cola tiene un espacio definido por el usuario
+    static LinkedList<Proceso> Procesos = new LinkedList<Proceso>(); //Lista de procesos que el usuario ingresa. Esta lista en algun momento se ordenará por tiempo de llegada. Al final de la ejecución esta lista queda vacía
+    static LinkedList<Proceso> ProcesosAux = new LinkedList<Proceso>(); //Lista de procesos que el usuario ingresa. Esta lista nunca se ordenará, pues se hará uso de ella para calcular tiempos
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese la capacidad de la cola de procesos listos para ejecución en kB");
+        Integer capacidad = scanner.nextInt(); //Se consigue el entero que el usuario ingresa
+        ProcesosListos.setCapacidad(capacidad); //La capacidad de la cola es puesta
+        
+        Menu2.showMenu(scanner); //Se comienza el menu
+    }
+     /**
+      * Metodo para imprimir las colas, la de espera y la de listos. Esto es usado cada vez que se hacen modificaciones a estas colas
+      */
     public static void imprColas(){
         System.out.println("Cola de procesos en espera");
         ProcesosEspera.imprimirCola();
         System.out.println("Cola de procesos listos para ejecucion");
         ProcesosListos.imprimirCola();
-    }
-    
-    public static void main(String[] args) {
-        Scanner scanner1 = new Scanner(System.in);
-        System.out.println("Ingrese la capacidad de la cola de procesos listos para ejecución en kB");
-        Integer capacidad = scanner1.nextInt();
-        ProcesosListos.setCapacidad(capacidad);
-        
-        Scanner scanner2 = new Scanner(System.in);
-        Menu2.showMenu(scanner2);
     }
     
 }

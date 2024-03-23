@@ -3,6 +3,7 @@ package planificadorrr;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 /**
  *
  * @author Equipo03
@@ -48,8 +49,6 @@ public class Proceso {
         return ProcesoSiguiente;
     }
     
-    
-    
     //SETTERS
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
@@ -74,8 +73,7 @@ public class Proceso {
     public void setID(String ID) {
         this.ID = ID;
     }
-    
-    
+
     
     //MÉTODOS
     private void generarID(Integer contador) { //método privado
@@ -127,5 +125,11 @@ public class Proceso {
         System.out.print(this.Nombre);
         System.out.print("]");
 
-}
+    }
+
+    @Override
+    public String toString() {
+        return Nombre;
+    }
+        
 }
