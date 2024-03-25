@@ -48,9 +48,9 @@ public class RoundRobin {
                     PlanificadorRR.ProcesosEspera.encolar(auxiliar); //Se encola el proceso en los procesos en espera
                     System.out.println("El proceso "+   auxiliar.getNombre()+" ha llegado en el ms " + this.currentTime.toString()+ " y se forma en la cola de procesos en espera");
                     PlanificadorRR.Procesos.removeFirst(); //Se remueve el proceso que ya ha sido encolado
-                    PlanificadorRR.imprColas();
-                    auxiliar = PlanificadorRR.Procesos.getFirst(); //Se vuelve a colocar a tmp como el primero de la lista
-                    if (auxiliar == null) break; //Si el proceso no existe, el while se rompe
+                    PlanificadorRR.imprColas();                   
+                    if (PlanificadorRR.Procesos.isEmpty()) break; //Si ya no hay procesos en la lista, el while se rompe
+                    else auxiliar = PlanificadorRR.Procesos.getFirst(); //Se vuelve a colocar a tmp como el primero de la lista
                 }        
             }
             if(!PlanificadorRR.ProcesosEspera.esVacia()){ 
