@@ -9,11 +9,14 @@ import java.util.Objects;
 public class RoundRobin {
 
     private Integer quantum, currentTime, timeEjec;
+    private Proceso CPU, auxiliar;
 
     public RoundRobin() {
         this.quantum = 4;
         this.currentTime = 0;
         this.timeEjec = 0;
+        this.CPU = null; //Proceso que indica cual es el proceso que se esta ejecutando actualmente
+        this.auxiliar = null; //Proceso temporal para evitar escribir cada vez la linea PlanificadorRR.Procesos.getFirst()
     }
 
     public boolean checkFitOn() {
@@ -37,19 +40,17 @@ public class RoundRobin {
     }
     
     public void Run() {
-        Proceso tmp; //Proceso temporal para evitar escribir cada vez la linea PlanificadorRR.Procesos.getFirst()
-        Proceso CPU = null; //Proceso que indica cual es el proceso que se esta ejecutando actualmente
         //Mientras la lista de procesos que el usuario ingresa (los que aun no han llegado), la cola de procesos en espera y la cola de procesos listos para ejecución no estén vacías 
         while(!PlanificadorRR.Procesos.isEmpty() || !PlanificadorRR.ProcesosEspera.esVacia() || !PlanificadorRR.ProcesosListos.esVacia() || CPU != null){
-            tmp = PlanificadorRR.Procesos.getFirst();
+            auxiliar = PlanificadorRR.Procesos.getFirst();
             if (!PlanificadorRR.Procesos.isEmpty()){ //Si hay elementos en la lista de procesos que aun no llegan sigue teniendo elementos 
-                while(Objects.equals(tmp.getTiempoLlegada(), this.currentTime)){ //Mientras el tiempo de llegada del primer proceso de la lista de procesos aun no llegan sea igual al tiempo actual (Esto para los procesos que llegan al mismo tiempo)
-                    PlanificadorRR.ProcesosEspera.encolar(tmp); //Se encola el proceso en los procesos en espera
-                    System.out.println("El proceso "+   tmp.getNombre()+" ha llegado en el ms " + this.currentTime.toString()+ " y se forma en la cola de procesos en espera");
+                while(Objects.equals(auxiliar.getTiempoLlegada(), this.currentTime)){ //Mientras el tiempo de llegada del primer proceso de la lista de procesos aun no llegan sea igual al tiempo actual (Esto para los procesos que llegan al mismo tiempo)
+                    PlanificadorRR.ProcesosEspera.encolar(auxiliar); //Se encola el proceso en los procesos en espera
+                    System.out.println("El proceso "+   auxiliar.getNombre()+" ha llegado en el ms " + this.currentTime.toString()+ " y se forma en la cola de procesos en espera");
                     PlanificadorRR.Procesos.removeFirst(); //Se remueve el proceso que ya ha sido encolado
                     PlanificadorRR.imprColas();
-                    tmp = PlanificadorRR.Procesos.getFirst(); //Se vuelve a colocar a tmp como el primero de la lista
-                    if (tmp == null) break; //Si el proceso no existe, el while se rompe
+                    auxiliar = PlanificadorRR.Procesos.getFirst(); //Se vuelve a colocar a tmp como el primero de la lista
+                    if (auxiliar == null) break; //Si el proceso no existe, el while se rompe
                 }        
             }
             if(!PlanificadorRR.ProcesosEspera.esVacia()){ 
