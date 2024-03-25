@@ -26,7 +26,6 @@ public class RoundRobin {
         }
         return false;
     }
-
     public void passPLtoPE() { //Envia el proceso del inicio de la cola de procesos listos al final de la cola de procesos en espera
         Proceso tmp = PlanificadorRR.ProcesosEspera.getInicial();
         PlanificadorRR.ProcesosListos.encolar(tmp);
@@ -81,6 +80,8 @@ public class RoundRobin {
                     PlanificadorRR.ProcesosEspera.encolar(this.CPU);
                     this.CPU = null;
                     this.timeEjec = 0;
+                    //Quitar un segundo de current time para que no afecte el tiempo de subir a cpu del siguiente proceso
+                    this.currentTime--;
                     PlanificadorRR.imprColas();
                 }
                 else if ((this.timeEjec == this.quantum) && CPU.getTiempoEjecucion() == 0){ //Si el tiempo que se ha ejecutado es el mismo que el del quantum (se acabo su tiempo de ejecutarse en CPU) y el proceso ya no tiene vida
@@ -89,6 +90,12 @@ public class RoundRobin {
                     this.timeEjec = 0;
                     PlanificadorRR.imprColas();
                 }  
+                else if(CPU.getTiempoEjecucion()==0){
+                    System.out.println("El proceso " + CPU.getNombre() + " ha terminado con su tiempo de ejecución en el ms " + this.currentTime.toString());
+                    CPU = null;
+                    this.timeEjec = 0;
+                    PlanificadorRR.imprColas();
+                }
             }
             this.currentTime++;
         }
