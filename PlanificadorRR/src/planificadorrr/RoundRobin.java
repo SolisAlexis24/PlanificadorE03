@@ -83,7 +83,7 @@ public class RoundRobin {
                     this.timeEjec = 0;
                     PlanificadorRR.imprColas();
                 }
-                else if ((this.timeEjec == this.quantum) && CPU.getTiempoEjecucion() == 0){
+                else if ((this.timeEjec == this.quantum) && CPU.getTiempoEjecucion() == 0){ //Si el tiempo que se ha ejecutado es el mismo que el del quantum (se acabo su tiempo de ejecutarse en CPU) y el proceso ya no tiene vida
                     System.out.println("El proceso " + CPU.getNombre() + " ha terminado con su tiempo de ejecución en el ms " + this.currentTime.toString());
                     CPU = null;
                     this.timeEjec = 0;
