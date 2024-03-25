@@ -31,8 +31,9 @@ public class PlanificadorRR {
     public static void imprColas(){
         System.out.println("Cola de procesos en espera");
         ProcesosEspera.imprimirCola();
-        System.out.println("Cola de procesos listos para ejecucion");
+        System.out.println("Cola de procesos listos para ejecucion con capacidad " + ProcesosListos.getCapacidad() + "kiB");
         ProcesosListos.imprimirCola();
+        System.out.println("");
     }
     
 }

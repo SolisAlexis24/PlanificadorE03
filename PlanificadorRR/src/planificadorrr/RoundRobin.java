@@ -41,9 +41,9 @@ public class RoundRobin {
     
     public void Run() {
         //Mientras la lista de procesos que el usuario ingresa (los que aun no han llegado), la cola de procesos en espera y la cola de procesos listos para ejecución no estén vacías 
-        while(!PlanificadorRR.Procesos.isEmpty() || !PlanificadorRR.ProcesosEspera.esVacia() || !PlanificadorRR.ProcesosListos.esVacia() || CPU != null){
-            auxiliar = PlanificadorRR.Procesos.getFirst();
+        while(!PlanificadorRR.Procesos.isEmpty() || !PlanificadorRR.ProcesosEspera.esVacia() || !PlanificadorRR.ProcesosListos.esVacia() || CPU != null){         
             if (!PlanificadorRR.Procesos.isEmpty()){ //Si hay elementos en la lista de procesos que aun no llegan sigue teniendo elementos 
+                auxiliar = PlanificadorRR.Procesos.getFirst();
                 while(Objects.equals(auxiliar.getTiempoLlegada(), this.currentTime)){ //Mientras el tiempo de llegada del primer proceso de la lista de procesos aun no llegan sea igual al tiempo actual (Esto para los procesos que llegan al mismo tiempo)
                     PlanificadorRR.ProcesosEspera.encolar(auxiliar); //Se encola el proceso en los procesos en espera
                     System.out.println("El proceso "+   auxiliar.getNombre()+" ha llegado en el ms " + this.currentTime.toString()+ " y se forma en la cola de procesos en espera");
@@ -68,7 +68,7 @@ public class RoundRobin {
                     PlanificadorRR.ProcesosListos.setCapacidad(PlanificadorRR.ProcesosListos.getCapacidad()+PlanificadorRR.ProcesosListos.getInicial().getTamano()); //Se reestablece el tamano para simular que el proceso salio de RAM
                     CPU = PlanificadorRR.ProcesosListos.getInicial(); //Se sube a CPU
                     PlanificadorRR.ProcesosListos.desencolar(); //Se quita al proceso que se ejetuta
-                    System.out.println("El proceso " + CPU.getNombre() + " ha subido a CPU para ejecutarse en el ms" + this.currentTime.toString());
+                    System.out.println("El proceso " + CPU.getNombre() + " ha subido a CPU para ejecutarse en el ms " + this.currentTime.toString());
                 }
             }
             if(CPU!=null){ //Si hay algun proceso en ejecucion
