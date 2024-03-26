@@ -72,7 +72,7 @@ public class Cola {
             }else{
                 Proceso tmp = this.Inicial;
                 this.Inicial = this.Inicial.getProcesoSiguiente();
-                tmp = null;
+                tmp.setProcesoSiguiente(null);
                 this.NumElementos--;
             }
         }
