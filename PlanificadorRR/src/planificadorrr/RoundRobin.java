@@ -74,17 +74,6 @@ public class RoundRobin {
                 }
                 else if((this.timeEjec == this.quantum) && this.CPU.getTiempoEjecucion()>0){ //Si el tiempo que se ha ejecutado es el mismo que el del quantum (se acabo su tiempo de ejecutarse en CPU) y el proceso sigue teniendo vida
                     this.currentTime--; //Quitar un segundo de current time para que no afecte el tiempo de subir a cpu del siguiente proceso
-                    if (!PlanificadorRR.Procesos.isEmpty()){ //Si hay elementos en la lista de procesos que aun no llegan sigue teniendo elementos. Este proceso se realiza aqui para que los procesos que aun no han llegado, pasen primero a formarse
-                        auxiliar = PlanificadorRR.Procesos.getFirst();
-                        while(Objects.equals(auxiliar.getTiempoLlegada(), this.currentTime)){ //Mientras el tiempo de llegada del primer proceso de la lista de procesos aun no llegan sea igual al tiempo actual (Esto para los procesos que llegan al mismo tiempo)
-                        PlanificadorRR.ProcesosEspera.encolar(auxiliar); //Se encola el proceso en los procesos en espera
-                        System.out.println("El proceso "+   auxiliar.getNombre()+" ha llegado en el ms " + this.currentTime.toString()+ " y se forma en la cola de procesos en espera");
-                        PlanificadorRR.Procesos.removeFirst(); //Se remueve el proceso que ya ha sido encolado
-                        PlanificadorRR.imprColas();                   
-                        if (PlanificadorRR.Procesos.isEmpty()) break; //Si ya no hay procesos en la lista, el while se rompe
-                        else auxiliar = PlanificadorRR.Procesos.getFirst(); //Se vuelve a colocar a tmp como el primero de la lista
-                        }        
-                    }
                     System.out.println("El proceso " + this.CPU.getNombre() + " cambia a la cola secundaria en el ms " + this.currentTime.toString());
                     PlanificadorRR.ProcesosEspera.encolar(this.CPU);
                     this.CPU = null;
