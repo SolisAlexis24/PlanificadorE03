@@ -89,12 +89,16 @@ public class RoundRobin {
                     CPU = null;
                     this.timeEjec = 0;
                     PlanificadorRR.imprColas();
+     //Quitar un segundo de current time para que no afecte el tiempo de subir a cpu del siguiente proceso
+                    this.currentTime--;
                 }  
                 else if(CPU.getTiempoEjecucion()==0){
                     System.out.println("El proceso " + CPU.getNombre() + " ha terminado con su tiempo de ejecución en el ms " + this.currentTime.toString());
                     CPU = null;
                     this.timeEjec = 0;
                     PlanificadorRR.imprColas();
+       //Quitar un segundo de current time para que no afecte el tiempo de subir a cpu del siguiente proceso
+                    this.currentTime--;
                 }
             }
             this.currentTime++;
