@@ -139,11 +139,7 @@ public class Proceso {
         String mes = mesActual.format(todayDate);
         String anio = anioActual.format(todayDate);
 
-        /* Generamos un identificador único con UUID
-        UUID uuid = UUID.randomUUID();
-        String uuidID = uuid.toString().replace("-", "").substring(0, 6); // Tomar solo los primeros 6 caracteres
-         */
-    // Creamos el ID del proceso concatenando año, mes, día e identificador
+    // Creamos el ID del proceso concatenando año, mes, día y contador
         this.ID = anio + mes + dia + contador;
     }
 
