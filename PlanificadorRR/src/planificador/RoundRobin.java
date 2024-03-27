@@ -49,7 +49,7 @@ public class RoundRobin {
         for(Proceso tmp : Planificador.ProcesosAux){
             suma +=  tmp.getTiempoEspera();
         }
-        total = suma/Planificador.ProcesosAux.size();
+        total = (float) suma/Planificador.ProcesosAux.size();
         System.out.println("Tiempo promedio de espera: " + total + " ms");
         suma = 0;
         total = 0;
@@ -57,7 +57,7 @@ public class RoundRobin {
         for(Proceso tmp : Planificador.ProcesosAux){
             suma +=  tmp.getTiempoEjecucion();
         }
-        total = suma/Planificador.ProcesosAux.size();
+        total = (float) suma/Planificador.ProcesosAux.size();
         System.out.println("Tiempo promedio de ejecucion: " + total + " ms");
         suma = 0;
         total = 0;
@@ -65,7 +65,7 @@ public class RoundRobin {
         for(Proceso tmp : Planificador.ProcesosAux){
             suma +=  tmp.getTiempoRespuesta();
         }
-        total = suma/Planificador.ProcesosAux.size();
+        total = (float) suma/Planificador.ProcesosAux.size();
         System.out.println("Tiempo promedio de respuesta: " + total + " ms");
         suma = 0;
         total = 0;
