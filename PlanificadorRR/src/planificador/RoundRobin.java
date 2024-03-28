@@ -19,13 +19,6 @@ public class RoundRobin {
         this.auxiliar = null; //Proceso temporal para evitar escribir cada vez la linea PlanificadorRR.Procesos.getFirst()
     }
 
-    public boolean checkFitOn() {
-        Proceso tmp = Planificador.ProcesosEspera.getInicial();
-        if(tmp.getTamano() <= Planificador.ProcesosListos.getCapacidad()){
-            return true;
-        }
-        return false;
-    }
     public void passPEtoPL() { //Envia el proceso del inicio de la cola de procesos en espera al final de la cola de procesos listos para ejecucion
         Proceso tmp = Planificador.ProcesosEspera.getInicial();
         Planificador.ProcesosListos.encolar(tmp);
@@ -50,7 +43,7 @@ public class RoundRobin {
             suma +=  tmp.getTiempoEspera();
         }
         total = (float) suma/Planificador.ProcesosAux.size();
-        System.out.println("Tiempo promedio de espera: " + total + " ms");
+        System.out.println("\n\n\nTiempo promedio de espera: " + total + " ms");
         suma = 0;
         total = 0;
         //Calcular tiempo promedio de ejecucion
@@ -78,7 +71,7 @@ public class RoundRobin {
                 auxiliar = Planificador.Procesos.getFirst();
                 while(Objects.equals(auxiliar.getTiempoLlegada(), this.currentTime)){ //Mientras el tiempo de llegada del primer proceso de la lista de procesos aun no llegan sea igual al tiempo actual (Esto para los procesos que llegan al mismo tiempo)
                     Planificador.ProcesosEspera.encolar(auxiliar); //Se encola el proceso en los procesos en espera
-                    System.out.println("El proceso "+   auxiliar.getNombre()+" ha llegado en el ms " + this.currentTime.toString()+ " y se forma en la cola de procesos en espera");
+                    System.out.println("\n\nEl proceso "+   auxiliar.getNombre()+" ha llegado en el ms " + this.currentTime.toString()+ " y se forma en la cola de procesos en espera");
                     Planificador.Procesos.removeFirst(); //Se remueve el proceso que ya ha sido encolado
                     Planificador.imprColas();                   
                     if (Planificador.Procesos.isEmpty()) break; //Si ya no hay procesos en la lista, el while se rompe
@@ -87,7 +80,7 @@ public class RoundRobin {
             }
             if(!Planificador.ProcesosEspera.esVacia()){ 
                 while (Planificador.ProcesosEspera.getInicial().getTamano() <= Planificador.ProcesosListos.getCapacidad()) { //Revisar si existe espacio dentro de la memoria primaria. Se hace con un while para meter a todos los procesos que quepan
-                    System.out.println("El proceso " + Planificador.ProcesosEspera.getInicial().getNombre() + " cambia a la cola primaria en el ms " + this.currentTime.toString());
+                    System.out.println("\nEl proceso " + Planificador.ProcesosEspera.getInicial().getNombre() + " cambia a la cola primaria en el ms " + this.currentTime.toString());
                     Planificador.ProcesosListos.setCapacidad(Planificador.ProcesosListos.getCapacidad() - Planificador.ProcesosEspera.getInicial().getTamano());
                     this.passPEtoPL();
                     Planificador.imprColas();
@@ -106,8 +99,9 @@ public class RoundRobin {
                         auxiliar.setTiempoPrimEjec(this.currentTime);
                         auxiliar.setTiempoRespuesta((auxiliar.getTiempoPrimEjec()-auxiliar.getTiempoLlegada())); //Tiempo de respuesta = Tiempo de primera ejecucion - Tiempo de llegada
                     }
-                    System.out.println("El proceso " + CPU.getNombre() + " ha subido a CPU para ejecutarse en el ms " + this.currentTime.toString());
+                    System.out.println("\n\n\nEl proceso " + CPU.getNombre() + " ha subido a CPU para ejecutarse en el ms " + this.currentTime.toString());
                     Planificador.imprColas();
+                    System.out.println("");
                 }
             }
             this.currentTime++;
@@ -119,7 +113,7 @@ public class RoundRobin {
                 }
                 else if((this.timeEjec == this.quantum) && this.CPU.getTiempoTotalEjecucion()>0){ //Si el tiempo que se ha ejecutado es el mismo que el del quantum (se acabo su tiempo de ejecutarse en CPU) y el proceso sigue teniendo vida
                     this.currentTime--; //Quitar un segundo de current time para que no afecte el tiempo de subir a cpu del siguiente proceso
-                    System.out.println("El proceso " + this.CPU.getNombre() + " cambia a la cola secundaria en el ms " + this.currentTime.toString());
+                    System.out.println("\n\nEl proceso " + this.CPU.getNombre() + " cambia a la cola secundaria en el ms " + this.currentTime.toString());
                     Planificador.ProcesosEspera.encolar(this.CPU);
                     this.CPU = null;
                     this.timeEjec = 0;
@@ -132,7 +126,7 @@ public class RoundRobin {
                     auxiliar.setTiempoUltEjec(this.currentTime-this.timeEjec); // El tiempo de inicio de la ultima ejecucion es el tiempo actual menos el tiempo que se ejecuto el proceso
                     auxiliar.setTiempoEspera(auxiliar.getTiempoUltEjec()-auxiliar.getTiempoLlegada()-(auxiliar.getTiempoTotalEjecucion()-this.timeEjec));  // Tiempo de espera = Tiempo de inicio de la ultima ejecucion - Tiempo de llegada - Tiempo de ejecucion antes de la ultima rafaga
                     auxiliar.setTiempoEjecucion(this.currentTime-auxiliar.getTiempoLlegada()); // Tiempo de ejecucion = Tiempo de termino de ultima ejecucion - Tiempo de llegada
-                    System.out.println("El proceso " + CPU.getNombre() + " ha terminado con su tiempo de ejecución en el ms " + this.currentTime.toString());
+                    System.out.println("\n\nEl proceso " + CPU.getNombre() + " ha terminado con su tiempo de ejecución en el ms " + this.currentTime.toString());
                     CPU = null;
                     this.timeEjec = 0;
                     Planificador.imprColas();     
@@ -144,7 +138,7 @@ public class RoundRobin {
                     auxiliar.setTiempoUltEjec(this.currentTime-this.timeEjec); // El tiempo de inicio de la ultima ejecucion es el tiempo actual menos el tiempo que se ejecuto el proceso
                     auxiliar.setTiempoEspera(auxiliar.getTiempoUltEjec()-auxiliar.getTiempoLlegada()-(auxiliar.getTiempoTotalEjecucion()-this.timeEjec));  // Tiempo de espera = Tiempo de inicio de la ultima ejecucion - Tiempo de llegada - Tiempo de ejecucion antes de la ultima rafaga
                     auxiliar.setTiempoEjecucion(this.currentTime-auxiliar.getTiempoLlegada()); // Tiempo de ejecucion = Tiempo de termino de ultima ejecucion - Tiempo de llegada
-                    System.out.println("El proceso " + CPU.getNombre() + " ha terminado con su tiempo de ejecución en el ms " + this.currentTime.toString());
+                    System.out.println("\n\nEl proceso " + CPU.getNombre() + " ha terminado con su tiempo de ejecución en el ms " + this.currentTime.toString());
                     CPU = null;
                     this.timeEjec = 0;        
                     Planificador.imprColas();

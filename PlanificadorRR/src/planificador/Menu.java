@@ -57,7 +57,7 @@ public class Menu {
                 }
                 case 2 -> {
                     
-                    System.out.println("Empezando política RR para planificador de procesos.");
+                    System.out.println("Empezando política RR para planificador de procesos.\n\n");
                     // Este bloque de código ordena la lista de procesos en PlanificadorRR.Procesos según el tiempo de llegada de cada proceso.
                     // Se utiliza el método estático sort() de la clase Collections para ordenar la lista.
                     Collections.sort(Planificador.Procesos, new Comparator<Proceso>() {
